@@ -12,8 +12,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement('ALTER TABLE personal_access_tokens ALTER COLUMN tokenable_id TYPE uuid USING tokenable_id::uuid');
+        Schema::table('personal_access_tokens', function (Blueprint $table) {
+            $table->uuid('tokenable_uuid')->nullable();
+        });
+    
+        // Optional: if there's a way to map bigint IDs to UUIDs, do it here
+        // DB::table('personal_access_tokens')->update([...]);
+    
+        Schema::table('personal_access_tokens', function (Blueprint $table) {
+            $table->dropColumn('tokenable_id');
+            $table->renameColumn('tokenable_uuid', 'tokenable_id');
+        });
     }
+    
     
 
     public function down():void
