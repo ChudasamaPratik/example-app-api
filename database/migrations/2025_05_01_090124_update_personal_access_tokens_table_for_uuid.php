@@ -9,12 +9,11 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up():void
+    public function up(): void
     {
-        Schema::table('personal_access_tokens', function (Blueprint $table) {
-            $table->uuid('tokenable_id')->change();
-        });
+        DB::statement('ALTER TABLE personal_access_tokens ALTER COLUMN tokenable_id TYPE uuid USING tokenable_id::uuid');
     }
+    
 
     public function down():void
     {
