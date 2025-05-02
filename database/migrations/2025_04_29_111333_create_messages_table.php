@@ -22,9 +22,9 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('cascade');
-            $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('reply_to_id')->references('id')->on('messages')->onDelete('set null');
+            // $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('cascade');
+            // $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('reply_to_id')->references('id')->on('messages')->onDelete('set null');
         });
     }
 
